@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package monovins.api.monovins;
+
+service WitnessCameraService {
+  rpc SetData(SetDataRequest) returns (SetDataReply);
+  // rpc SetNoiseProfile(SetNoiseProfileRequest) returns(SetNoiseProfileReply);
+}
+
+// TODO(curtismuntz): send actual frame
+message CameraData {
+  string filename = 1;
+  int32 camera_id = 2;
+}
+
+message CameraNoise {
+  int32 camera_id = 1;
+  double focal_length = 2;
+  uint32 center_x = 3;
+  uint32 center_y = 4;
+}
+
+message Vec3 {
+  // timestamp
+  double x = 1;
+  double y = 2;
+  double z = 3;
+}
+
+message ImuData {
+  int32 imu_id = 1;
+  Vec3 gyro = 2;
+  Vec3 accel = 3;
+}

@@ -1,6 +1,8 @@
 # monovins
 A monocular visual-inertial estimator.
 
+`monovins` uses gRPC as an API for input/output of the estimator. All datasets will simply convert to the gRPC data types and interface that way.
+
 ## running
 `bazel run monovo/app -- --photo $HOME/murt/open_source/monovo/data-in/Lenna.png --output_photo_dir $HOME/murt/open_source/monovo/data-out/frames --video $HOME/murt/open_source/monovo/data-in/monitor.avi`.
 
