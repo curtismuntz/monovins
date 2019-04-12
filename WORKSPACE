@@ -7,15 +7,17 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 ###############################
 http_archive(
     name = "murtis_bazel_tools",
-    sha256 = "a6bcb86c7b5ed4c55fddd4b64d9c4916677e758f0fdd7f051f9dbfca8a6a8eee",
-    strip_prefix = "bazel_tools-811127f89abd954e3ed4a89e9aa90b468c71c2d4",
-    urls = ["https://github.com/curtismuntz/bazel_tools/archive/811127f89abd954e3ed4a89e9aa90b468c71c2d4.tar.gz"],
+    sha256 = "099798213986aa96d7dc1bdc6f7b0841eeefe5408f6ede85f5530638a9aff1bf",
+    strip_prefix = "bazel_tools-47f50405eb76f8320dc16c11509595254af98a4d",
+    urls = ["https://github.com/curtismuntz/bazel_tools/archive/47f50405eb76f8320dc16c11509595254af98a4d.tar.gz"],
 )
 
 load("@murtis_bazel_tools//tools:github_repo.bzl", "github_repo")
-load("@murtis_bazel_tools//tools:deps.bzl", "linter_dependencies")
+load("@murtis_bazel_tools//tools:deps.bzl", "google_cpp_dependencies", "linter_dependencies")
 
 linter_dependencies()
+
+google_cpp_dependencies()
 
 github_repo(
     name = "murtis_bazel_compilers",
@@ -75,39 +77,38 @@ bind(
     name = "zlib",
     actual = "@zlib_git//:zlib",
 )
-
-# GoogleTest/GoogleMock framework. Used by most unit-tests.
-http_archive(
-    name = "com_google_googletest",
-    sha256 = "ff7a82736e158c077e76188232eac77913a15dac0b22508c390ab3f88e6d6d86",
-    strip_prefix = "googletest-b6cd405286ed8635ece71c72f118e659f4ade3fb",
-    urls = ["https://github.com/google/googletest/archive/b6cd405286ed8635ece71c72f118e659f4ade3fb.zip"],  # 2019-01-07
-)
-
-# Google benchmark.
-http_archive(
-    name = "com_github_google_benchmark",
-    sha256 = "59f918c8ccd4d74b6ac43484467b500f1d64b40cc1010daa055375b322a43ba3",
-    strip_prefix = "benchmark-16703ff83c1ae6d53e5155df3bb3ab0bc96083be",
-    urls = ["https://github.com/google/benchmark/archive/16703ff83c1ae6d53e5155df3bb3ab0bc96083be.zip"],
-)
-
-# GFlags
-http_archive(
-    name = "com_github_gflags_gflags",
-    sha256 = "53b16091efa386ab11e33f018eef0ed489e0ab63554455293cbb0cc2a5f50e98",
-    strip_prefix = "gflags-28f50e0fed19872e0fd50dd23ce2ee8cd759338e",
-    urls = ["https://github.com/gflags/gflags/archive/28f50e0fed19872e0fd50dd23ce2ee8cd759338e.zip"], # 2019-01-25
-)
-
-# Glog
-http_archive(
-    name = "com_github_google_glog",
-    # sha256 = "53b16091efa386ab11e33f018eef0ed489e0ab63554455293cbb0cc2a5f50e98",
-    strip_prefix = "glog-96a2f23dca4cc7180821ca5f32e526314395d26a",
-    urls = ["https://github.com/google/glog/archive/96a2f23dca4cc7180821ca5f32e526314395d26a.zip"], # 2019-03-21
-)
-
+#
+# # GoogleTest/GoogleMock framework. Used by most unit-tests.
+# http_archive(
+#     name = "com_google_googletest",
+#     sha256 = "ff7a82736e158c077e76188232eac77913a15dac0b22508c390ab3f88e6d6d86",
+#     strip_prefix = "googletest-b6cd405286ed8635ece71c72f118e659f4ade3fb",
+#     urls = ["https://github.com/google/googletest/archive/b6cd405286ed8635ece71c72f118e659f4ade3fb.zip"],  # 2019-01-07
+# )
+#
+# # Google benchmark.
+# http_archive(
+#     name = "com_github_google_benchmark",
+#     sha256 = "59f918c8ccd4d74b6ac43484467b500f1d64b40cc1010daa055375b322a43ba3",
+#     strip_prefix = "benchmark-16703ff83c1ae6d53e5155df3bb3ab0bc96083be",
+#     urls = ["https://github.com/google/benchmark/archive/16703ff83c1ae6d53e5155df3bb3ab0bc96083be.zip"],
+# )
+#
+# # GFlags
+# http_archive(
+#     name = "com_github_gflags_gflags",
+#     sha256 = "53b16091efa386ab11e33f018eef0ed489e0ab63554455293cbb0cc2a5f50e98",
+#     strip_prefix = "gflags-28f50e0fed19872e0fd50dd23ce2ee8cd759338e",
+#     urls = ["https://github.com/gflags/gflags/archive/28f50e0fed19872e0fd50dd23ce2ee8cd759338e.zip"], # 2019-01-25
+# )
+#
+# # Glog
+# http_archive(
+#     name = "com_github_google_glog",
+#     # sha256 = "53b16091efa386ab11e33f018eef0ed489e0ab63554455293cbb0cc2a5f50e98",
+#     strip_prefix = "glog-96a2f23dca4cc7180821ca5f32e526314395d26a",
+#     urls = ["https://github.com/google/glog/archive/96a2f23dca4cc7180821ca5f32e526314395d26a.zip"], # 2019-03-21
+# )
 
 ###############################
 # Buildifier
@@ -141,8 +142,6 @@ go_register_toolchains()
 
 buildifier_dependencies()
 
-
-
 ###############################
 # rust
 ###############################
@@ -175,7 +174,9 @@ http_archive(
 )
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
+
 rust_repositories()
 
 load("@io_bazel_rules_rust//:workspace.bzl", "bazel_version")
+
 bazel_version(name = "bazel_version")

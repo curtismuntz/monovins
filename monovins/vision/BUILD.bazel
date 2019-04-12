@@ -1,15 +1,15 @@
 cc_library(
-  name = "imshow_wrapper",
-  srcs = [
-    "imshow_wrapper.h",
-    "imshow_wrapper.cpp",
-  ],
-  hdrs = ["imshow_wrapper.h"],
-  deps = [
-  # "@opencv_local//:opencv",
-    "@opencv_archive//:opencv",
-    "@com_github_gflags_gflags//:gflags",
-    "@com_github_google_glog//:glog",
-  ],
-  visibility = ["//visibility:public"],
+    name = "imshow_wrapper",
+    srcs = [
+        "imshow_wrapper.cpp",
+        "imshow_wrapper.h",
+    ],
+    hdrs = ["imshow_wrapper.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        # "@opencv_local//:opencv",
+        "@opencv_archive//:opencv",
+        "@com_github_gflags_gflags//:gflags",
+        "@com_github_google_glog//:glog",
+    ],
 )

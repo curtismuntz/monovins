@@ -14,22 +14,25 @@ rust_library(
 cc_library(
     name = "wrapper",
     srcs = [":hello_lib"],
-    linkstatic = True,
     # for some reason these are needed...
-    linkopts = ["-lpthread", "-ldl"],
+    linkopts = [
+        "-lpthread",
+        "-ldl",
+    ],
+    linkstatic = True,
 )
 
 cc_library(
-  name = "ukf",
-  srcs = [
-    "ukf.h",
-    "ukf.cpp",
-  ],
-  hdrs = [
-    "ukf.h",
-  ],
-  deps = [
-    ":wrapper",
-    "@com_github_google_glog//:glog",
-  ],
+    name = "ukf",
+    srcs = [
+        "ukf.cpp",
+        "ukf.h",
+    ],
+    hdrs = [
+        "ukf.h",
+    ],
+    deps = [
+        ":wrapper",
+        "@com_github_google_glog//:glog",
+    ],
 )

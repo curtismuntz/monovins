@@ -769,10 +769,10 @@ cc_library(
 )
 
 genrule(
-  name = "mocs",
-  srcs = ["modules/highgui/window_QT.cpp"],
-  outs = ["moc_window_QT.cpp"],
-  cmd = "moc $(location %s) -o $@ -f'modules/highgui/window_QT.h'"
+    name = "mocs",
+    srcs = ["modules/highgui/window_QT.cpp"],
+    outs = ["moc_window_QT.cpp"],
+    cmd = "moc $(location %s) -o $@ -f'modules/highgui/window_QT.h'",
 )
 
 cc_library(
@@ -795,12 +795,15 @@ cc_library(
             "modules/highgui/src/window_QT.cpp",
         ],
     ),
-    copts = _OPENCV_COPTS,
     hdrs = ["modules/highgui/include/opencv2/highgui.hpp"],
+    copts = _OPENCV_COPTS,
     # moc_hdrs = ["modules/highgui/src/window_QT.h",],
     # QT was compiled with fpic
     # copts = _OPENCV_COPTS + ["-fpic"],
-    includes = ["modules/highgui/include", "modules/highgui/src"],
+    includes = [
+        "modules/highgui/include",
+        "modules/highgui/src",
+    ],
     visibility = ["//visibility:public"],
     deps = [
         ":opencv_core",

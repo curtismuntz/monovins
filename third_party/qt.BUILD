@@ -28,8 +28,8 @@ cc_library(
     name = "qt_gui",
     hdrs = glob(["QtGui/**"]),
     includes = [
-      ".",
-      "QtGui"
+        ".",
+        "QtGui",
     ],
     linkopts = ["-lQt5Gui"],
     visibility = ["//visibility:public"],
@@ -40,8 +40,8 @@ cc_library(
     name = "qt_concurrent",
     hdrs = glob(["QtConcurrent/**"]),
     includes = [
-      ".",
-      "QtConcurrent",
+        ".",
+        "QtConcurrent",
     ],
     linkopts = ["-lQt5Concurrent"],
     visibility = ["//visibility:public"],
@@ -52,8 +52,8 @@ cc_library(
     name = "qt_test",
     hdrs = glob(["QtTest/**"]),
     includes = [
-      ".",
-      "QtTest",
+        ".",
+        "QtTest",
     ],
     linkopts = ["-lQt5Test"],
     visibility = ["//visibility:public"],
@@ -64,8 +64,8 @@ cc_library(
     name = "qt_opengl",
     hdrs = glob(["QtOpenGL/**"]),
     includes = [
-      ".",
-      "QtOpenGL",
+        ".",
+        "QtOpenGL",
     ],
     linkopts = ["-lQt5OpenGL"],
     visibility = ["//visibility:public"],
