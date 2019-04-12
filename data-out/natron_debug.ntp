@@ -100,7 +100,7 @@
 				<item>
 					<Enabled>1</Enabled>
 					<HasAnimation>0</HasAnimation>
-					<Value>&lt;font size=&quot;6&quot; color=&quot;#000000&quot; face=&quot;Droid Sans&quot;&gt;&lt;Natron&gt;(Frame_24.jpg)&lt;/Natron&gt;&lt;/font&gt;</Value>
+					<Value>&lt;font size=&quot;6&quot; color=&quot;#000000&quot; face=&quot;Droid Sans&quot;&gt;&lt;Natron&gt;(_current_frame_12.jpg)&lt;/Natron&gt;&lt;/font&gt;</Value>
 					<Default></Default>
 					<HasMaster>0</HasMaster>
 					<Expression></Expression>
@@ -121,7 +121,7 @@
 				<item>
 					<Enabled>1</Enabled>
 					<HasAnimation>0</HasAnimation>
-					<Value>/home/murt/murt/open_source/monovo/data-out/frames/Frame_#.jpg</Value>
+					<Value>/home/murt/murt/open_source/monovins/data-out/frames/_current_frame_#.jpg</Value>
 					<Default></Default>
 					<HasMaster>0</HasMaster>
 					<Expression></Expression>
@@ -434,7 +434,7 @@
 				<count>0</count>
 				<item_version>0</item_version>
 			</Inputs_map>
-			<KnobsAge>4</KnobsAge>
+			<KnobsAge>1</KnobsAge>
 			<MasterNode></MasterNode>
 			<HasRotoContext>0</HasRotoContext>
 			<HasTrackerContext>0</HasTrackerContext>
@@ -462,7 +462,7 @@
 		<item>
 			<Enabled>1</Enabled>
 			<HasAnimation>0</HasAnimation>
-			<Value>&lt;Name&gt;OCIO&lt;/Name&gt;&lt;Value&gt;/app/share/OpenColorIO-Configs/blender&lt;/Value&gt;&lt;Name&gt;Project&lt;/Name&gt;&lt;Value&gt;/home/murt/murt/open_source/monovo/data-out&lt;/Value&gt;</Value>
+			<Value>&lt;Name&gt;OCIO&lt;/Name&gt;&lt;Value&gt;/app/share/OpenColorIO-Configs/blender&lt;/Value&gt;&lt;Name&gt;Project&lt;/Name&gt;&lt;Value&gt;/home/murt/murt/open_source/monovins/data-out&lt;/Value&gt;</Value>
 			<Default></Default>
 			<HasMaster>0</HasMaster>
 			<Expression></Expression>
@@ -523,7 +523,7 @@
 		<item>
 			<Enabled>0</Enabled>
 			<HasAnimation>0</HasAnimation>
-			<Value>Thu Apr 11 17:14:46 2019</Value>
+			<Value>Thu Apr 11 18:32:57 2019</Value>
 			<Default></Default>
 			<HasMaster>0</HasMaster>
 			<Expression></Expression>
@@ -539,7 +539,7 @@
 		<count>0</count>
 		<item_version>3</item_version>
 	</AdditionalFormats>
-	<Timeline_current_time>24</Timeline_current_time>
+	<Timeline_current_time>12</Timeline_current_time>
 	<CreationDate>1555027885694</CreationDate>
 </Project>
 <ProjectGui class_id="10" tracking_level="0" version="11">
@@ -548,8 +548,8 @@
 		<item_version>6</item_version>
 		<item class_id="12" tracking_level="0" version="6">
 			<Name>Viewer1</Name>
-			<X_position>1.19437500000000000e+03</X_position>
-			<Y_position>2.03750000000000000e+02</Y_position>
+			<X_position>1.24837500000000000e+03</X_position>
+			<Y_position>2.82750000000000000e+02</Y_position>
 			<Preview_enabled>0</Preview_enabled>
 			<r>6.99992359e-01</r>
 			<g>6.99992359e-01</g>
@@ -562,8 +562,8 @@
 		</item>
 		<item>
 			<Name>Read1</Name>
-			<X_position>7.82250000000000000e+02</X_position>
-			<Y_position>1.79750000000000000e+02</Y_position>
+			<X_position>1.35100000000000000e+03</X_position>
+			<Y_position>1.10000000000000000e+02</Y_position>
 			<Preview_enabled>1</Preview_enabled>
 			<r>6.99992359e-01</r>
 			<g>6.99992359e-01</g>
