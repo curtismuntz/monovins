@@ -6,10 +6,11 @@
 #include "monovins/filter/ukf/ukf.h"
 
 
-DEFINE_bool(verbose, false, "Display program name before message");
-DEFINE_string(video, "", "Video");
 
 namespace {
+
+DEFINE_bool(verbose, false, "Display program name before message");
+DEFINE_string(video, "", "Video");
 
 void run_dataset(std::string fname) {
   auto cap = cv::VideoCapture(fname);

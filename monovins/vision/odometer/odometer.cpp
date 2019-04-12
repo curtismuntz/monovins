@@ -5,6 +5,7 @@ namespace vision {
 namespace odometer {
 
 void monovo::process(const cv::Mat& frame) {
+  // we can't do anything at all if this is our first frame.
   if(_frame_counter == 0) {
     _current_frame = frame;
     _previous_frame = frame;
