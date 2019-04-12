@@ -1,0 +1,14 @@
+cc_library(
+  name = "odometer",
+  srcs = [
+    "odometer.h",
+    "odometer.cpp",
+  ],
+  hdrs = ["odometer.h"],
+  deps = [
+  # "@opencv_local//:opencv",
+    "@opencv_archive//:opencv",
+    "//monovins/vision:imshow_wrapper",
+  ],
+  visibility = ["//visibility:public"],
+)

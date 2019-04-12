@@ -1,0 +1,35 @@
+package(default_visibility = ["//visibility:public"])
+
+load("@io_bazel_rules_rust//rust:rust.bzl", "rust_library")
+
+rust_library(
+    name = "hello_lib",
+    srcs = [
+        "src/hello.rs",
+        "src/lib.rs",
+    ],
+    crate_type = "staticlib",
+)
+
+cc_library(
+    name = "wrapper",
+    srcs = [":hello_lib"],
+    linkstatic = True,
+    # for some reason these are needed...
+    linkopts = ["-lpthread", "-ldl"],
+)
+
+cc_library(
+  name = "ukf",
+  srcs = [
+    "ukf.h",
+    "ukf.cpp",
+  ],
+  hdrs = [
+    "ukf.h",
+  ],
+  deps = [
+    ":wrapper",
+    "@com_github_google_glog//:glog",
+  ],
+)

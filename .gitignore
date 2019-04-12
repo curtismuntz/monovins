@@ -1,0 +1,7 @@
+bazel-*
+data-in/*
+!data-in/.gitkeep
+data-out/frames/*.jpg
+data-out/frames/*.png
+data-out/natron_debug.ntp.autosave
+data-out/natron_debug.ntp.lock
