@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package monovins.api;
+
+import "google/protobuf/timestamp.proto";
+import "monovins/api/vector3d.proto";
+
+message Imu {
+  int32 id = 1;
+  google.protobuf.Timestamp timestamp = 2;
+  Vector3d gyroscope = 3;
+  Vector3d accelerometer = 4;
+}

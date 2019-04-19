@@ -74,41 +74,27 @@ http_archive(
 )
 
 bind(
-    name = "zlib",
+    name = "myzlib",
     actual = "@zlib_git//:zlib",
 )
-#
-# # GoogleTest/GoogleMock framework. Used by most unit-tests.
-# http_archive(
-#     name = "com_google_googletest",
-#     sha256 = "ff7a82736e158c077e76188232eac77913a15dac0b22508c390ab3f88e6d6d86",
-#     strip_prefix = "googletest-b6cd405286ed8635ece71c72f118e659f4ade3fb",
-#     urls = ["https://github.com/google/googletest/archive/b6cd405286ed8635ece71c72f118e659f4ade3fb.zip"],  # 2019-01-07
-# )
-#
-# # Google benchmark.
-# http_archive(
-#     name = "com_github_google_benchmark",
-#     sha256 = "59f918c8ccd4d74b6ac43484467b500f1d64b40cc1010daa055375b322a43ba3",
-#     strip_prefix = "benchmark-16703ff83c1ae6d53e5155df3bb3ab0bc96083be",
-#     urls = ["https://github.com/google/benchmark/archive/16703ff83c1ae6d53e5155df3bb3ab0bc96083be.zip"],
-# )
-#
-# # GFlags
-# http_archive(
-#     name = "com_github_gflags_gflags",
-#     sha256 = "53b16091efa386ab11e33f018eef0ed489e0ab63554455293cbb0cc2a5f50e98",
-#     strip_prefix = "gflags-28f50e0fed19872e0fd50dd23ce2ee8cd759338e",
-#     urls = ["https://github.com/gflags/gflags/archive/28f50e0fed19872e0fd50dd23ce2ee8cd759338e.zip"], # 2019-01-25
-# )
-#
-# # Glog
-# http_archive(
-#     name = "com_github_google_glog",
-#     # sha256 = "53b16091efa386ab11e33f018eef0ed489e0ab63554455293cbb0cc2a5f50e98",
-#     strip_prefix = "glog-96a2f23dca4cc7180821ca5f32e526314395d26a",
-#     urls = ["https://github.com/google/glog/archive/96a2f23dca4cc7180821ca5f32e526314395d26a.zip"], # 2019-03-21
-# )
+
+###############################
+# protobuf
+###############################
+http_archive(
+    name = "build_stack_rules_proto",
+    sha256 = "9c9fc051189dd87bd643cf69e82e3b08de03114fc03155de784ba60bd0cef4b6",
+    strip_prefix = "rules_proto-609362dd9b08110b7a95bfa26b5e3aac3cd06905",
+    urls = ["https://github.com/stackb/rules_proto/archive/609362dd9b08110b7a95bfa26b5e3aac3cd06905.tar.gz"],
+)
+
+load("@build_stack_rules_proto//cpp:deps.bzl", "cpp_grpc_library")
+
+cpp_grpc_library()
+
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
 
 ###############################
 # Buildifier

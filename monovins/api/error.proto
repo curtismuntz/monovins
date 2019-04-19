@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package monovins.api;
+
+message Error {
+  Code code = 1;
+  string message = 2;
+
+  enum Code {
+    UNKNOWN = 0;
+    NOT_IMPLEMENTED = 1;
+  }
+}

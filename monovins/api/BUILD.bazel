@@ -1,0 +1,21 @@
+load("@build_stack_rules_proto//cpp:cpp_grpc_library.bzl", "cpp_grpc_library")
+
+filegroup(
+  name = "protos",
+  srcs = glob(["*.proto"])
+)
+
+proto_library(
+    name = "api",
+    srcs = [":protos"],
+    visibility = ["//monovins:__subpackages__"],
+    deps = [
+    "@com_google_protobuf//:timestamp_proto",
+    ],
+)
+
+cpp_grpc_library(
+    name = "cc_grpc",
+    visibility = ["//visibility:public"],
+    deps = [":api"],
+)

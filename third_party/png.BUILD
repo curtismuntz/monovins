@@ -18,7 +18,7 @@ cc_library(
     include_prefix = "libpng",
     visibility = ["//visibility:public"],
     deps = [
-        "//external:zlib",
+        "//external:myzlib",
     ],
 )
 

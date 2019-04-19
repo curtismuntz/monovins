@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package monovins.api;
+
+import "monovins/api/vector3d.proto";
+import "monovins/api/quaterniond.proto";
+
+message Pose {
+  Vector3d position = 1;
+  Quaterniond quaternion = 2;
+}

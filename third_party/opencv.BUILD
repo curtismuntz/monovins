@@ -66,7 +66,7 @@ cc_library(
     ],
     hdrs = ["modules/core/include/opencv2/core/opencl/ocl_defs.hpp"],
     copts = [
-        "-Iexternal/zlib",
+        "-Iexternal/myzlib",
     ] + _OPENCV_COPTS,
     includes = [
         ".",
@@ -80,7 +80,7 @@ cc_library(
     }),
     visibility = ["//visibility:public"],
     deps = [
-        "//external:zlib",
+        "//external:myzlib",
     ],
 )
 
@@ -804,7 +804,7 @@ cc_library(
     ]),
     copts = [
         "-Iexternal/libpng_archive",
-        "-Iexternal/zlib",
+        "-Iexternal/myzlib",
     ] + _OPENCV_COPTS,
     includes = [
         "modules/imgcodecs/include",
@@ -814,7 +814,7 @@ cc_library(
         ":opencv_core",
         ":opencv_imgproc",
         "//external:png",
-        "//external:zlib",
+        "//external:myzlib",
         "@libjpeg_archive//:libjpeg",
     ],
 )

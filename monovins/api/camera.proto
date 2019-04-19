@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package monovins.api;
+
+import "google/protobuf/timestamp.proto";
+
+message CameraNoise {
+  int32 camera_id = 1;
+  double focal_length = 2;
+  uint32 center_x = 3;
+  uint32 center_y = 4;
+}
+
+message Camera {
+  int32 id = 1;
+  google.protobuf.Timestamp timestamp = 2;
+  oneof data {
+    string filename = 3;
+  }
+  // // TODO(curtismuntz): send actual frame instead of fname
+  // string filename = 3;
+}
