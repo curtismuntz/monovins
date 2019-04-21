@@ -10,6 +10,10 @@ void MonoVo::image_prep(const cv::Mat& frame, cv::Mat *ret) {
     cvtColor(frame, *ret, cv::COLOR_RGB2GRAY);
 }
 
+void MonoVo::process(const std::string& fname) {
+  auto frame = cv::imread(fname);
+  process(frame);
+}
 
 void MonoVo::process(const cv::Mat& frame) {
   // we can't do anything at all if this is our first frame.

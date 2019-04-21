@@ -15,6 +15,7 @@ public:
   ~MonoVo() {};
   void image_prep(const cv::Mat& frame, cv::Mat *ret);
   void process(const cv::Mat& frame);
+  void process(const std::string& fname);
 
 private:
   ImageManager _im;
