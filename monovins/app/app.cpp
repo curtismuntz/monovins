@@ -6,6 +6,13 @@ namespace app {
 
 Status MonoVins::SetData (ServerContext *context, const SetDataRequest *request,
                       SetDataReply *reply) {
+  if(request->has_camera()) {
+    auto fname = request->camera().filename();
+    LOG(INFO) << "new camera frame received: " << fname << " at time: " << request->camera().timestamp().seconds() << "." << request->camera().timestamp().nanos();
+    monovo_.process(fname);
+  } else if (request->has_imu()) {
+    LOG(INFO) << "new imu frame recieved. ";
+  }
   return Status::OK;
 }
 

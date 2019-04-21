@@ -1,0 +1,10 @@
+cc_library(
+    name = "client",
+    hdrs = ["client.h"],
+    srcs = ["client.cpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//monovins/api:cc_grpc",
+        "@com_github_google_glog//:glog",
+    ],
+)

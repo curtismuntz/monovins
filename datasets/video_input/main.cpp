@@ -1,29 +1,35 @@
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 #include <opencv2/core/core.hpp>
+#include "opencv2/videoio.hpp"
+#include <opencv2/highgui/highgui.hpp>
 
-#include "monovins/app/app.h"
+#include "monovins/client/client.h"
 
 namespace {
 
-DEFINE_bool(verbose, false, "Display program name before message");
+using monovins::client::VinsClient;
 DEFINE_string(video, "", "video input file");
+DEFINE_string(tmp_photo_dir, "/tmp", "Output photo directory");
+void run_dataset(const std::string video_name) {
+  auto client = VinsClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
 
-void run_dataset(std::string fname) {
-  auto cap = cv::VideoCapture(fname);
-  auto mv = monovins::app::MonoVins();
-
+  LOG(INFO) << "opening " << video_name;
+  cv::VideoCapture cap(video_name);
   cv::Mat frame;
-  while(1){
+  unsigned int frame_count = 0;
+  while(1) {
     cap >> frame;
-    if (frame.empty()) {
+    if(frame.empty()) {
       break;
+      LOG(INFO) << "End of video";
     }
-    mv.add_camera(frame);
-    mv.process();
+    auto fname = FLAGS_tmp_photo_dir + "/" + std::to_string(frame_count) + ".jpg";
+    cv::imwrite(fname, frame);
+    client.SetCamera(fname, 0, floor(frame_count / 30), ceil(frame_count % 30) * 33333333);
+    client.SetImu(0, floor(frame_count / 30), ceil(frame_count % 30) * 33333333);
+    ++frame_count;
   }
-
-  cap.release();
 }
 
 } // namespace
@@ -36,8 +42,6 @@ int main(int argc, char *argv[]) {
   gflags::SetUsageMessage("Some usage message here");
   FLAGS_logtostderr = 1;
   gflags::ParseCommandLineFlags(&argc, &argv, true);
-
-  monovins::filter::ukf::woo();
   run_dataset(FLAGS_video);
   gflags::ShutDownCommandLineFlags();
   return 0;

@@ -15,8 +15,9 @@ message CameraNoise {
 message Camera {
   int32 id = 1;
   google.protobuf.Timestamp timestamp = 2;
-  oneof data {
-    image frame = 3;
-    string filename = 4;
-  }
+  string filename = 3;
+  // oneof data {
+  //   string filename = 3;
+  //   image frame = 4;
+  // }
 }

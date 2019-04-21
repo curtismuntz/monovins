@@ -15,7 +15,7 @@ void ImageManager::imshow(std::string name, const cv::Mat& img) {
     _map[name] = _map[name] + 1;
   }
   auto fname = FLAGS_output_photo_dir + "/" + name + "_" + std::to_string(_map[name]) + FLAGS_photo_extension;
-  LOG(INFO) << "FILENAME " << fname << std::endl;
+  // LOG(INFO) << "FILENAME " << fname << std::endl;
   cv::imwrite(fname, img);
 }
 
