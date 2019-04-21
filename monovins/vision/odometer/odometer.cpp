@@ -4,18 +4,28 @@ namespace monovins {
 namespace vision {
 namespace odometer {
 
-void monovo::process(const cv::Mat& frame) {
+
+void MonoVo::image_prep(const cv::Mat& frame, cv::Mat *ret) {
+    // convert to greyscale
+    cvtColor(frame, *ret, cv::COLOR_RGB2GRAY);
+}
+
+
+void MonoVo::process(const cv::Mat& frame) {
   // we can't do anything at all if this is our first frame.
-  if(_frame_counter == 0) {
-    _current_frame = frame;
-    _previous_frame = frame;
-    ++_frame_counter;
+  if(frame_counter_ == 0) {
+    image_prep(frame, &current_frame_);
+    image_prep(frame, &previous_frame_);
+    ++frame_counter_;
     return;
   }
-  _previous_frame = _current_frame;
-  _current_frame = frame;
-  _im.imshow("_current_frame", _current_frame);
-  ++_frame_counter;
+  previous_frame_ = current_frame_;
+  image_prep(frame, &current_frame_);
+
+  _im.show("input_frame", frame);
+  _im.show("current_frame", current_frame_);
+
+  ++frame_counter_;
 }
 
 } // namespace odometer

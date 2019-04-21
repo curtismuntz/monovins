@@ -1,0 +1,10 @@
+cc_library(
+  name = "kmav_parser",
+  hdrs = ["parser.h"],
+  srcs = ["parser.cpp"],
+  deps = [
+    "//monovins/api:cc_proto",
+    "//monovins/data_manager",
+    "@com_github_google_glog//:glog",
+  ],
+)

@@ -6,6 +6,13 @@ namespace monovins {
 namespace filter {
 namespace ukf {
 
+class UKF {
+public:
+  UKF() {};
+private:
+
+};
+
 /*
   Functions that are written in rust!
 */

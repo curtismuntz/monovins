@@ -1,17 +1,38 @@
 load("@build_stack_rules_proto//cpp:cpp_grpc_library.bzl", "cpp_grpc_library")
+load("@build_stack_rules_proto//cpp:cpp_proto_library.bzl", "cpp_proto_library")
 
-filegroup(
+proto_library(
   name = "protos",
-  srcs = glob(["*.proto"])
+  srcs = [
+    "camera.proto",
+    "error.proto",
+    "imu.proto",
+    "image.proto",
+    "pose.proto",
+    "quaterniond.proto",
+    "vector3d.proto",
+  ],
+  deps = [
+    "@com_google_protobuf//:timestamp_proto",
+  ],
+  visibility = ["//monovins:__subpackages__"],
 )
+
 
 proto_library(
     name = "api",
-    srcs = [":protos"],
+    srcs = ["monovins.proto"],
     visibility = ["//monovins:__subpackages__"],
     deps = [
-    "@com_google_protobuf//:timestamp_proto",
+      "@com_google_protobuf//:timestamp_proto",
+      ":protos",
     ],
+)
+
+cpp_proto_library(
+  name = "cc_proto",
+  deps = [":protos"],
+  visibility = ["//visibility:public"],
 )
 
 cpp_grpc_library(

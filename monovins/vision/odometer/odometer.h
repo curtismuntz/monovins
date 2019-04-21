@@ -9,17 +9,18 @@ namespace monovins {
 namespace vision {
 namespace odometer {
 
-class monovo {
+class MonoVo {
 public:
-  monovo() : _frame_counter(0) {};
-  ~monovo() {};
+  MonoVo() : frame_counter_(0) {};
+  ~MonoVo() {};
+  void image_prep(const cv::Mat& frame, cv::Mat *ret);
   void process(const cv::Mat& frame);
 
 private:
   ImageManager _im;
-  cv::Mat _current_frame;
-  cv::Mat _previous_frame;
-  unsigned int _frame_counter;
+  cv::Mat current_frame_;
+  cv::Mat previous_frame_;
+  unsigned int frame_counter_;
 };
 
 } // namespace odometer

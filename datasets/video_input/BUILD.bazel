@@ -1,0 +1,10 @@
+cc_binary(
+    name = "video_input",
+    srcs = ["main.cpp"],
+    visibility = ["//visibility:public"],
+    deps = [
+        "//monovins/app",
+        "@com_github_google_glog//:glog",
+        "@opencv_archive//:opencv",
+    ],
+)

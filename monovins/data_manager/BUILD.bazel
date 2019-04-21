@@ -1,0 +1,5 @@
+cc_library(
+  name = "data_manager",
+  hdrs = ["data_manager.h"],
+  visibility = ["//visibility:public"],
+)

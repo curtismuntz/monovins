@@ -7,7 +7,7 @@ import "monovins/api/imu.proto";
 import "monovins/api/pose.proto";
 import "monovins/api/error.proto";
 
-service WitnessCameraService {
+service MonoVinsService {
   // Sets data for the filter to consume.
   rpc SetData(SetDataRequest) returns (SetDataReply);
 

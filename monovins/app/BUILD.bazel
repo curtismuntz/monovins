@@ -1,11 +1,13 @@
 cc_binary(
     name = "app",
-    srcs = ["main.cpp"],
+    srcs = ["app.cpp", "app.h", "main.cpp"],
+    # hdrs = ["app.h"],
     visibility = ["//visibility:public"],
     deps = [
         "//monovins/filter/ukf",
         "//monovins/vision/odometer",
+        "//monovins/data_manager",
         "@com_github_google_glog//:glog",
-        "@opencv_archive//:opencv",
+        "//monovins/api:cc_grpc",
     ],
 )
