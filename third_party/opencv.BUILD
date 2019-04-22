@@ -813,8 +813,8 @@ cc_library(
     deps = [
         ":opencv_core",
         ":opencv_imgproc",
-        "//external:png",
         "//external:myzlib",
+        "//external:png",
         "@libjpeg_archive//:libjpeg",
     ],
 )

@@ -1,8 +1,8 @@
 cc_library(
-  name = "data_manager",
-  hdrs = ["data_manager.h"],
-  srcs = ["data_manager.cpp"],
-  visibility = ["//visibility:public"],
+    name = "data_manager",
+    srcs = ["data_manager.cpp"],
+    hdrs = ["data_manager.h"],
+    visibility = ["//visibility:public"],
 )
 
 cc_test(

@@ -1,7 +1,7 @@
 cc_library(
     name = "client",
-    hdrs = ["client.h"],
     srcs = ["client.cpp"],
+    hdrs = ["client.h"],
     visibility = ["//visibility:public"],
     deps = [
         "//monovins/api:cc_grpc",
