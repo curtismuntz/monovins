@@ -5,20 +5,27 @@ A monocular visual-inertial estimator.
 
 ## running
 
-`bazel run monovins/app -- --output_photo_dir /home/murt/murt/open_source/monovins/data-out/frames`.
+###running the application:
 
-then from another terminal:
+`bazel run monovins/app -- --output_photo_dir /home/murt/murt/open_source/monovins/data-out/frames`
+
+### running a dataset
+
+From another terminal, you can load and process a dataset. See each dataset folder for download/extraction instructions.
+
+### kmav dataset
 
 `bazel run datasets/kmav_dataset -- --data_folder /home/murt/murt/open_source/monovins/data-in/V1_01_easy`
 
 ## debugging
-debugging output frames can be accomplished via [Natron](https://natrongithub.github.io/). I recommend installing via flatpak:
+
+Debugging output frames can be accomplished via [Natron](https://natrongithub.github.io/). I recommend installing via flatpak:
 
 `flatpak install flathub fr.natron.Natron`
 
 # Additional Information
 ## why cpp?
-I need to practice for interviews in c++.
+I need to practice c++.
 
 ## TODO
 * Solve highgui build using bazel. QT? moc_window_QT.h/cpp?
