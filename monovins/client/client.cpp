@@ -27,17 +27,17 @@ bool VinsClient::SetCamera(const std::string &fname, int id, int seconds, int na
     }
   }
 
-bool VinsClient::SetImu(int id, int seconds, int nanos) {
+bool VinsClient::SetImu(double gx, double gy, double gz, double ax, double ay, double az, int id, int seconds, int nanos) {
     SetDataRequest request;
     request.mutable_imu()->mutable_timestamp()->set_seconds(seconds);
     request.mutable_imu()->mutable_timestamp()->set_nanos(nanos);
     request.mutable_imu()->set_id(id);
-    request.mutable_imu()->mutable_gyroscope()->set_x(1.0);
-    request.mutable_imu()->mutable_gyroscope()->set_y(2.0);
-    request.mutable_imu()->mutable_gyroscope()->set_z(3.0);
-    request.mutable_imu()->mutable_accelerometer()->set_x(4.0);
-    request.mutable_imu()->mutable_accelerometer()->set_y(5.0);
-    request.mutable_imu()->mutable_accelerometer()->set_z(6.0);
+    request.mutable_imu()->mutable_gyroscope()->set_x(gx);
+    request.mutable_imu()->mutable_gyroscope()->set_y(gy);
+    request.mutable_imu()->mutable_gyroscope()->set_z(gz);
+    request.mutable_imu()->mutable_accelerometer()->set_x(ax);
+    request.mutable_imu()->mutable_accelerometer()->set_y(ay);
+    request.mutable_imu()->mutable_accelerometer()->set_z(az);
 
     SetDataReply reply;
     ClientContext context;

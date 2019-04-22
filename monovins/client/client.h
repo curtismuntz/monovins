@@ -35,7 +35,7 @@ class VinsClient {
 public:
   VinsClient(std::shared_ptr<grpc::Channel> channel);
   bool SetCamera(const std::string &fname, int id, int seconds, int nanos);
-  bool SetImu(int id, int seconds, int nanos);
+  bool SetImu(double gx, double gy, double gz, double ax, double ay, double az, int id, int seconds, int nanos);
   bool ProcessAll();
 
 private:
