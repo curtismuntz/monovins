@@ -3,19 +3,22 @@
 namespace monovins {
 namespace app {
 
-
-Status MonoVins::SetData (ServerContext *context, const SetDataRequest *request,
-                      SetDataReply *reply) {
-  if(request->has_camera()) {
+Status MonoVins::SetData(ServerContext *context, const SetDataRequest *request,
+                         SetDataReply *reply) {
+  if (request->has_camera()) {
     auto fname = request->camera().filename();
-    LOG(INFO) << "new camera frame received: " << fname << " at time: " << request->camera().timestamp().seconds() << "." << request->camera().timestamp().nanos();
-    auto t = monovins::data_manager::timestamp(request->camera().timestamp().seconds(), request->camera().timestamp().nanos());
+    LOG(INFO) << "new camera frame received: " << fname
+              << " at time: " << request->camera().timestamp().seconds() << "."
+              << request->camera().timestamp().nanos();
+    auto t = monovins::data_manager::timestamp(request->camera().timestamp().seconds(),
+                                               request->camera().timestamp().nanos());
     auto imgdata = monovins::data_manager::SensorData(fname, t);
     dataman_.add_camera(imgdata);
     return Status::OK;
   } else if (request->has_imu()) {
     LOG(INFO) << "new imu frame recieved. ";
-    auto t = monovins::data_manager::timestamp(request->imu().timestamp().seconds(), request->camera().timestamp().nanos());
+    auto t = monovins::data_manager::timestamp(request->imu().timestamp().seconds(),
+                                               request->camera().timestamp().nanos());
     auto imudata = monovins::data_manager::SensorData(t);
     auto gx = request->imu().gyroscope().x();
     auto gy = request->imu().gyroscope().y();
@@ -35,13 +38,13 @@ Status MonoVins::SetData (ServerContext *context, const SetDataRequest *request,
 }
 
 Status MonoVins::ProcessAll(ServerContext *context, const ProcessAllRequest *request,
-                    ProcessAllReply *reply) {
+                            ProcessAllReply *reply) {
   LOG(INFO) << "Processing all data in buffer.";
   auto vec = dataman_.return_in_order();
   LOG(INFO) << vec.size() << " elements.";
-  for(size_t i = 0; i < vec.size(); ++i) {
-    if(vec[i].getType() == monovins::data_manager::SensorType::CAMERA) {
-      auto fname =  vec[i].getFileName();
+  for (size_t i = 0; i < vec.size(); ++i) {
+    if (vec[i].getType() == monovins::data_manager::SensorType::CAMERA) {
+      auto fname = vec[i].getFileName();
       LOG(INFO) << "  " << fname;
       monovo_.process(fname);
     }
@@ -50,20 +53,20 @@ Status MonoVins::ProcessAll(ServerContext *context, const ProcessAllRequest *req
 }
 
 Status MonoVins::GetPose(ServerContext *context, const GetPoseRequest *request,
-                    GetPoseReply *reply) {
+                         GetPoseReply *reply) {
   return Status::OK;
 }
 
 void RunServer() {
-   const std::string kServerAddress{"0.0.0.0:50051"};
-   MonoVins service;
-   ServerBuilder builder;
-   builder.AddListeningPort(kServerAddress, grpc::InsecureServerCredentials());
-   builder.RegisterService(&service);
-   std::unique_ptr<Server> server(builder.BuildAndStart());
-   LOG(INFO) << "Server listening on " << kServerAddress << std::endl;
-   server->Wait();
+  const std::string kServerAddress{"0.0.0.0:50051"};
+  MonoVins service;
+  ServerBuilder builder;
+  builder.AddListeningPort(kServerAddress, grpc::InsecureServerCredentials());
+  builder.RegisterService(&service);
+  std::unique_ptr<Server> server(builder.BuildAndStart());
+  LOG(INFO) << "Server listening on " << kServerAddress << std::endl;
+  server->Wait();
 }
 
-} // namespace app
-} // namespace monovins
+}  // namespace app
+}  // namespace monovins

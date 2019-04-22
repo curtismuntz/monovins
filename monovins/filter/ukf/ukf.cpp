@@ -9,6 +9,6 @@ void woo() {
   LOG(INFO) << "woo ";
 }
 
-} // namespace ukf
-} // namespace filter
-} // namespace monovins
+}  // namespace ukf
+}  // namespace filter
+}  // namespace monovins

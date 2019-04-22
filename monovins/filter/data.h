@@ -3,13 +3,9 @@
 namespace monovins {
 namespace filter {
 
-struct ImuData {
+struct ImuData {};
 
-};
+struct CameraData {};
 
-struct CameraData {
-
-};
-
-} // namespace filter
-} // namespace monovo
+}  // namespace filter
+}  // namespace monovins

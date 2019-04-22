@@ -25,23 +25,23 @@ using grpc::ClientReader;
 using grpc::ClientReaderWriter;
 using grpc::ClientWriter;
 using grpc::Status;
-using monovins::api::monovins::SetDataRequest;
-using monovins::api::monovins::SetDataReply;
-using monovins::api::monovins::ProcessAllRequest;
-using monovins::api::monovins::ProcessAllReply;
 using monovins::api::Camera;
+using monovins::api::monovins::ProcessAllReply;
+using monovins::api::monovins::ProcessAllRequest;
+using monovins::api::monovins::SetDataReply;
+using monovins::api::monovins::SetDataRequest;
 
 class VinsClient {
-public:
+ public:
   VinsClient(std::shared_ptr<grpc::Channel> channel);
   bool SetCamera(const std::string &fname, int id, int seconds, int nanos);
-  bool SetImu(double gx, double gy, double gz, double ax, double ay, double az, int id, int seconds, int nanos);
+  bool SetImu(double gx, double gy, double gz, double ax, double ay, double az, int id, int seconds,
+              int nanos);
   bool ProcessAll();
 
-private:
+ private:
   std::unique_ptr<monovins::api::monovins::MonoVinsService::Stub> stub_;
 };
 
-
-} // namespace client
-} // namespace monovins
+}  // namespace client
+}  // namespace monovins

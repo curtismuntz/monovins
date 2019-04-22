@@ -1,8 +1,8 @@
 #pragma once
 
 #include <cstdint>
-#include <string>
 #include <deque>
+#include <string>
 #include <vector>
 
 namespace monovins {
@@ -15,22 +15,18 @@ struct timestamp {
   }
   int64_t seconds_;
   int32_t nanos_;
-  friend bool operator< (const timestamp &lhs, const timestamp &rhs) {
-    if(lhs.seconds_ == rhs.seconds_) {
+  friend bool operator<(const timestamp &lhs, const timestamp &rhs) {
+    if (lhs.seconds_ == rhs.seconds_) {
       return (lhs.nanos_ <= rhs.nanos_);
     } else {
       return (lhs.seconds_ <= rhs.seconds_);
     }
   }
-  friend bool operator> (const timestamp &lhs, const timestamp &rhs) {
-    return rhs < lhs;
-  }
-  friend bool operator== (const timestamp &lhs, const timestamp &rhs) {
+  friend bool operator>(const timestamp &lhs, const timestamp &rhs) { return rhs < lhs; }
+  friend bool operator==(const timestamp &lhs, const timestamp &rhs) {
     return (lhs.seconds_ == rhs.seconds_) && (lhs.nanos_ == rhs.nanos_);
   }
-  friend bool operator!= (const timestamp &lhs, const timestamp &rhs) {
-    return !(lhs == rhs);
-  }
+  friend bool operator!=(const timestamp &lhs, const timestamp &rhs) { return !(lhs == rhs); }
 };
 
 struct imu {
@@ -42,7 +38,7 @@ struct imu {
     ay_ = 0.0;
     az_ = 0.0;
   }
-  imu(double gx, double gy, double gz, double ax, double ay, double az){
+  imu(double gx, double gy, double gz, double ax, double ay, double az) {
     gx_ = gx;
     gy_ = gy;
     gz_ = gz;
@@ -63,7 +59,6 @@ struct imu {
     az_ = z;
   }
 
-
   double gx_, gy_, gz_;
   double ax_, ay_, az_;
 };
@@ -74,56 +69,35 @@ enum SensorType {
   CAMERA,
 };
 
-
 class SensorData {
-public:
+ public:
   // GENERIC CONSTRUCTORS
-  SensorData(const timestamp &time)
-    : type_(SensorType::NONE)
-    , time_(time)
-  {};
-  SensorData(int64_t seconds, int32_t nanos)
-    : type_(SensorType::NONE)
-    , time_(seconds, nanos)
-  {};
+  SensorData(const timestamp &time) : type_(SensorType::NONE), time_(time){};
+  SensorData(int64_t seconds, int32_t nanos) : type_(SensorType::NONE), time_(seconds, nanos){};
 
   // CAMERA CONSTRUCTORS
   SensorData(const std::string &fname, int64_t seconds, int32_t nanos)
-    : type_(SensorType::CAMERA)
-    , time_(seconds, nanos)
-    , fname_(fname)
-  {};
+      : type_(SensorType::CAMERA), time_(seconds, nanos), fname_(fname){};
   SensorData(const std::string &fname, const timestamp &time)
-    : type_(SensorType::CAMERA)
-    , time_(time)
-    , fname_(fname)
-  {};
+      : type_(SensorType::CAMERA), time_(time), fname_(fname){};
 
   // IMU CONSTRUCTORS
   SensorData(const imu &data, const timestamp &time)
-    : type_(SensorType::IMU)
-    , time_(time)
-    , imu_(data)
-  {};
+      : type_(SensorType::IMU), time_(time), imu_(data){};
   SensorData(const imu &data, int64_t seconds, int32_t nanos)
-    : type_(SensorType::IMU)
-    , time_(seconds, nanos)
-    , imu_(data)
-  {};
+      : type_(SensorType::IMU), time_(seconds, nanos), imu_(data){};
 
   int64_t getSeconds();
   int32_t getNanos();
   timestamp getTimeStamp();
-  const SensorType getType() const {return type_;};
-  friend bool operator== (const SensorData &lhs, const SensorData &rhs) {
+  const SensorType getType() const { return type_; };
+  friend bool operator==(const SensorData &lhs, const SensorData &rhs) {
     return (lhs.type_ == rhs.type_) && (lhs.time_ == rhs.time_);
   }
-  friend bool operator!= (const SensorData &lhs, const SensorData &rhs) {
-    return !(lhs == rhs);
-  }
+  friend bool operator!=(const SensorData &lhs, const SensorData &rhs) { return !(lhs == rhs); }
 
   std::string getFileName() {
-    if(type_ == SensorType::CAMERA) {
+    if (type_ == SensorType::CAMERA) {
       return fname_;
     } else {
       return "";
@@ -131,10 +105,9 @@ public:
   }
 
   imu getImu() {
-    if(type_ == SensorType::IMU) {
+    if (type_ == SensorType::IMU) {
       return imu_;
-    }
-    else{
+    } else {
       return imu();
     }
   };
@@ -152,7 +125,8 @@ public:
     type_ = SensorType::IMU;
     imu_.setAccel(x, y, z);
   }
-private:
+
+ private:
   SensorType type_;
   timestamp time_;
 
@@ -160,35 +134,30 @@ private:
   std::string fname_;
 };
 
-
 class DataManager {
-public:
-  DataManager() {};
+ public:
+  DataManager(){};
 
-  void add_camera(const SensorData &data) {
-    camera_.push_back(data);
-  }
+  void add_camera(const SensorData &data) { camera_.push_back(data); }
 
-  void add_imu(const SensorData &data) {
-    imu_.push_back(data);
-  }
+  void add_imu(const SensorData &data) { imu_.push_back(data); }
 
   SensorData pop() {
-    if(imu_size() > 0 && camera_size() > 0) {
-      if(imu_.front().getTimeStamp() < camera_.front().getTimeStamp()) {
-          auto ret = imu_.front();
-          imu_.pop_front();
-          return ret;
+    if (imu_size() > 0 && camera_size() > 0) {
+      if (imu_.front().getTimeStamp() < camera_.front().getTimeStamp()) {
+        auto ret = imu_.front();
+        imu_.pop_front();
+        return ret;
       } else {
-          auto ret = camera_.front();
-          camera_.pop_front();
-          return ret;
+        auto ret = camera_.front();
+        camera_.pop_front();
+        return ret;
       }
-    } else if(imu_size() <= 0 && camera_size() > 0) {
+    } else if (imu_size() <= 0 && camera_size() > 0) {
       auto ret = camera_.front();
       camera_.pop_front();
       return ret;
-    } else if(camera_size() <= 0 && imu_size() > 0) {
+    } else if (camera_size() <= 0 && imu_size() > 0) {
       auto ret = imu_.front();
       imu_.pop_front();
       return ret;
@@ -198,28 +167,21 @@ public:
   std::vector<SensorData> return_in_order() {
     std::vector<SensorData> vec;
     vec.reserve(imu_size() + camera_size());
-    while(imu_size() + camera_size() > 0) {
+    while (imu_size() + camera_size() > 0) {
       vec.push_back(pop());
     }
     return vec;
   }
 
-  inline size_t imu_size() {
-    return imu_.size();
-  }
-  inline size_t camera_size() {
-    return camera_.size();
-  }
+  inline size_t imu_size() { return imu_.size(); }
+  inline size_t camera_size() { return camera_.size(); }
 
-  inline bool has_data() {
-    return (imu_size() + camera_size()) > 0;
-  }
+  inline bool has_data() { return (imu_size() + camera_size()) > 0; }
 
-private:
+ private:
   std::deque<SensorData> imu_;
   std::deque<SensorData> camera_;
 };
 
-
-} // namespace data_manager
-} // namespace monovins
+}  // namespace data_manager
+}  // namespace monovins

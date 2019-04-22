@@ -1,8 +1,8 @@
 #include <gflags/gflags.h>
 #include <glog/logging.h>
 #include <opencv2/core/core.hpp>
-#include "opencv2/videoio.hpp"
 #include <opencv2/highgui/highgui.hpp>
+#include "opencv2/videoio.hpp"
 
 #include "monovins/client/client.h"
 
@@ -12,15 +12,16 @@ using monovins::client::VinsClient;
 DEFINE_string(video, "", "video input file");
 DEFINE_string(tmp_photo_dir, "/tmp", "Output photo directory");
 void run_dataset(const std::string video_name) {
-  auto client = VinsClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
+  auto client =
+      VinsClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
 
   LOG(INFO) << "opening " << video_name;
   cv::VideoCapture cap(video_name);
   cv::Mat frame;
   unsigned int frame_count = 0;
-  while(1) {
+  while (1) {
     cap >> frame;
-    if(frame.empty()) {
+    if (frame.empty()) {
       break;
       LOG(INFO) << "End of video";
     }
@@ -34,10 +35,7 @@ void run_dataset(const std::string video_name) {
   client.ProcessAll();
 }
 
-} // namespace
-
-
-
+}  // namespace
 
 int main(int argc, char *argv[]) {
   google::InitGoogleLogging(argv[0]);

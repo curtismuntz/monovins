@@ -3,17 +3,11 @@
 namespace monovins {
 namespace data_manager {
 
-int64_t SensorData::getSeconds() {
-  return time_.seconds_;
-}
+int64_t SensorData::getSeconds() { return time_.seconds_; }
 
-int32_t SensorData::getNanos() {
-  return time_.nanos_;
-};
+int32_t SensorData::getNanos() { return time_.nanos_; };
 
-timestamp SensorData::getTimeStamp() {
-  return time_;
-}
+timestamp SensorData::getTimeStamp() { return time_; }
 
-} // namespace data_manager
-} // namespace monovins
+}  // namespace data_manager
+}  // namespace monovins
