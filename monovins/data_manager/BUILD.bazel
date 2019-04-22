@@ -1,5 +1,15 @@
 cc_library(
   name = "data_manager",
   hdrs = ["data_manager.h"],
+  srcs = ["data_manager.cpp"],
   visibility = ["//visibility:public"],
+)
+
+cc_test(
+    name = "data_manager_test",
+    srcs = ["data_manager_test.cpp"],
+    deps = [
+        ":data_manager",
+        "//external:gtest",
+    ],
 )

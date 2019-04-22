@@ -1,20 +1,17 @@
 #include <gflags/gflags.h>
 #include <glog/logging.h>
-#include <opencv2/core/core.hpp>
 
-#include "monovins/vision/odometer/odometer.h"
-#include "monovins/filter/ukf/ukf.h"
-
-
+#include "monovins/client/client.h"
 
 namespace {
+
+using monovins::client::VinsClient;
 
 DEFINE_bool(verbose, false, "Display program name before message");
 DEFINE_string(data_folder, "", "Data folder containing kmav dataset");
 
-void run_dataset(std::string fname) {
-
-  auto mv = monovins::vision::odometer::monovo();
+void run_dataset(std::string folder_name) {
+  auto client = VinsClient(grpc::CreateChannel("localhost:50051", grpc::InsecureChannelCredentials()));
 
 }
 
@@ -29,8 +26,7 @@ int main(int argc, char *argv[]) {
   FLAGS_logtostderr = 1;
   gflags::ParseCommandLineFlags(&argc, &argv, true);
 
-  monovins::filter::ukf::woo();
-  run_dataset(FLAGS_video);
+  run_dataset(FLAGS_data_folder);
   gflags::ShutDownCommandLineFlags();
   return 0;
 }
