@@ -5,7 +5,7 @@ A monocular visual-inertial estimator.
 
 ## running
 
-###running the application:
+### running the application:
 
 `bazel run monovins/app -- --output_photo_dir /home/murt/murt/open_source/monovins/data-out/frames`
 
