@@ -6,7 +6,7 @@ namespace monovins {
 namespace filter {
 namespace ukf {
 
-template <int KALMAN_STATES, int KALMAN_MEASUREMENTS>
+// template <int KALMAN_STATES, int KALMAN_MEASUREMENTS>
 class UKF {
  public:
   UKF(){};
