@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/curtismuntz/monovins.svg?branch=master)](https://travis-ci.org/curtismuntz/monovins)
+
 # monovins
 A monocular visual-inertial estimator.
 
