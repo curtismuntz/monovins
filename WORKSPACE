@@ -78,6 +78,14 @@ bind(
     actual = "@zlib_git//:zlib",
 )
 
+http_archive(
+  name = "com_github_ben-strasser_fast-cpp-csv-parser",
+  strip_prefix = "fast-cpp-csv-parser-78f413248fdeea27368481c4a1d48c059ac36680",
+  # sha256 = "",
+  url = "https://github.com/ben-strasser/fast-cpp-csv-parser/archive/78f413248fdeea27368481c4a1d48c059ac36680.tar.gz",
+  build_file = "//third_party:fast-cpp-csv-parser.BUILD",
+)
+
 ###############################
 # protobuf
 ###############################
