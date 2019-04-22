@@ -27,9 +27,11 @@ void run_dataset(const std::string video_name) {
     auto fname = FLAGS_tmp_photo_dir + "/" + std::to_string(frame_count) + ".jpg";
     cv::imwrite(fname, frame);
     client.SetCamera(fname, 0, floor(frame_count / 30), ceil(frame_count % 30) * 33333333);
-    client.SetImu(0, floor(frame_count / 30), ceil(frame_count % 30) * 33333333);
+    // client.SetImu(0, floor(frame_count / 30), ceil(frame_count % 30) * 33333333);
     ++frame_count;
   }
+
+  client.ProcessAll();
 }
 
 } // namespace

@@ -51,5 +51,19 @@ bool VinsClient::SetImu(int id, int seconds, int nanos) {
     }
   }
 
+bool VinsClient::ProcessAll() {
+  ProcessAllRequest request;
+  ProcessAllReply reply;
+  ClientContext context;
+  auto status = stub_->ProcessAll(&context, request, &reply);
+
+  if(status.ok()) {
+    return true;
+  } else {
+    LOG(INFO) << "ProcessAll RPC failed. gRPC error code: " << status.error_code();
+    return false;
+  }
+}
+
 } // namespace client
 } // namespace monovins

@@ -7,10 +7,10 @@ namespace {
 
 // TODO(curtismuntz) add more meaningful tests
 TEST(BasicSensorTests, All) {
-  auto vo = ImageData("test.jpg", 100, 1);
+  auto vo = SensorData("test.jpg", 100, 1);
   ASSERT_EQ(vo.getSeconds(), 100);
-  auto imu = ImuData(1,2);
-  ASSERT_EQ(imu.getNanos(), 2);
+  auto imu_data = SensorData(imu(), 1,2);
+  ASSERT_EQ(imu_data.getNanos(), 2);
 }
 
 TEST(TimestampTests, All) {
@@ -26,11 +26,12 @@ TEST(TimestampTests, All) {
 }
 
 TEST(QueueTests, All) {
-  auto vo1 = ImageData("test.jpg", timestamp(20,300));
-  auto imu1 = ImuData(timestamp(20,400));
-  auto imu2 = ImuData(timestamp(20,420));
-  auto vo2 = ImageData("test.jpg", timestamp(20,600));
-  auto imu3 = ImuData(timestamp(20,620));
+  auto vo1 = SensorData("test.jpg", timestamp(20,300));
+  auto imu_data = imu();
+  auto imu1 = SensorData(imu_data, timestamp(20,400));
+  auto imu2 = SensorData(imu_data, timestamp(20,420));
+  auto vo2 = SensorData("test.jpg", timestamp(20,600));
+  auto imu3 = SensorData(imu_data, timestamp(20,620));
 
   auto dm = DataManager();
   ASSERT_EQ(dm.imu_size(), 0);
@@ -56,11 +57,11 @@ TEST(QueueTests, All) {
 }
 
 TEST(ReturnInOrder, All) {
-  auto vo1 = ImageData("test.jpg", timestamp(20,300));
-  auto imu1 = ImuData(timestamp(20,400));
-  auto imu2 = ImuData(timestamp(20,420));
-  auto vo2 = ImageData("test.jpg", timestamp(20,600));
-  auto imu3 = ImuData(timestamp(20,620));
+  auto vo1 = SensorData("test.jpg", timestamp(20,300));
+  auto imu1 = SensorData(imu(), timestamp(20,400));
+  auto imu2 = SensorData(imu(), timestamp(20,420));
+  auto vo2 = SensorData("test.jpg", timestamp(20,600));
+  auto imu3 = SensorData(imu(), timestamp(20,620));
 
   auto dm = DataManager();
   ASSERT_EQ(dm.imu_size(), 0);

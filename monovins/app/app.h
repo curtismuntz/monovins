@@ -31,6 +31,8 @@ using monovins::api::monovins::SetDataRequest;
 using monovins::api::monovins::SetDataReply;
 using monovins::api::monovins::GetPoseRequest;
 using monovins::api::monovins::GetPoseReply;
+using monovins::api::monovins::ProcessAllRequest;
+using monovins::api::monovins::ProcessAllReply;
 
 class MonoVins final : public MonoVinsService::Service {
 public:
@@ -41,7 +43,8 @@ public:
                         SetDataReply *reply) override;
   Status GetPose(ServerContext *context, const GetPoseRequest *request,
                       GetPoseReply *reply) override;
-
+  Status ProcessAll(ServerContext *context, const ProcessAllRequest *request,
+                      ProcessAllReply *reply) override;
 private:
   monovins::data_manager::DataManager dataman_;
   monovins::vision::odometer::MonoVo monovo_;

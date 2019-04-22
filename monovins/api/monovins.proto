@@ -8,11 +8,18 @@ import "monovins/api/pose.proto";
 import "monovins/api/error.proto";
 
 service MonoVinsService {
-  // Sets data for the filter to consume.
+  // Sets data for the filter to consume. This adds data to the data buffer.
   rpc SetData(SetDataRequest) returns (SetDataReply);
 
   // Requests for curernt pose.
   rpc GetPose(GetPoseRequest) returns (GetPoseReply);
+
+  // Forces the filter to spin. Will consume data in the buffer if it is present,
+  // otherwise will propogate state via state equations.
+  rpc Spin(SpinRequest) returns (SpinReply);
+
+  // Processes all the data in the data buffer.
+  rpc ProcessAll(ProcessAllRequest) returns (ProcessAllReply);
 
   // Sets a noise profile for the filter to use.
   // rpc SetNoiseProfile(SetNoiseProfileRequest) returns(SetNoiseProfileReply);
@@ -36,3 +43,11 @@ message GetPoseReply {
     Pose pose = 2;
   }
 }
+
+// Spin
+message SpinRequest {}
+message SpinReply {}
+
+// ProcessAll
+message ProcessAllRequest {}
+message ProcessAllReply {}
