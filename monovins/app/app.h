@@ -12,7 +12,7 @@
 #include <thread>
 
 #include "monovins/api/monovins.grpc.pb.h"
-#include "monovins/data_manager/data_manager.h"
+#include "monovins/dataframe/dataframe.h"
 #include "monovins/filter/ukf/ukf.h"
 #include "monovins/vision/odometer/odometer.h"
 
@@ -45,7 +45,7 @@ class MonoVins final : public MonoVinsService::Service {
                     ProcessAllReply *reply) override;
 
  private:
-  monovins::data_manager::DataManager dataman_;
+  monovins::dataframe::DataManager dataman_;
   monovins::vision::odometer::MonoVo monovo_;
   monovins::filter::ukf::UKF ukf_;
 };

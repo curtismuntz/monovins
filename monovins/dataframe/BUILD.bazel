@@ -1,0 +1,15 @@
+cc_library(
+    name = "dataframe",
+    srcs = ["dataframe.cpp"],
+    hdrs = ["dataframe.h"],
+    visibility = ["//visibility:public"],
+)
+
+cc_test(
+    name = "dataframe_test",
+    srcs = ["dataframe_test.cpp"],
+    deps = [
+        ":dataframe",
+        "//external:gtest",
+    ],
+)

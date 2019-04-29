@@ -1,6 +1,6 @@
 # DataManager
 
-This class will maintain a buffer of sensor data.
+This class will maintain a buffer of sensor data. It is meant to be similar in nature to a pandas dataframe. It can hold potentially heterogeneous data types within the same time series index.
 
 This can be used with live data as in:
 * add camera data

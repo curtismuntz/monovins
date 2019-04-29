@@ -1,8 +1,8 @@
-#include "monovins/data_manager/data_manager.h"
+#include "monovins/dataframe/dataframe.h"
 #include "gtest/gtest.h"
 
 namespace monovins {
-namespace data_manager {
+namespace dataframe {
 namespace {
 
 // TODO(curtismuntz) add more meaningful tests
@@ -84,7 +84,7 @@ TEST(ReturnInOrder, All) {
 }
 
 }  // namespace
-}  // namespace data_manager
+}  // namespace dataframe
 }  // namespace monovins
 
 int main(int argc, char **argv) {

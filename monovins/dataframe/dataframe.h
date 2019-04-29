@@ -6,7 +6,7 @@
 #include <vector>
 
 namespace monovins {
-namespace data_manager {
+namespace dataframe {
 
 struct timestamp {
   timestamp(int64_t seconds, int32_t nanos) {
@@ -183,5 +183,5 @@ class DataManager {
   std::deque<SensorData> camera_;
 };
 
-}  // namespace data_manager
+}  // namespace dataframe
 }  // namespace monovins

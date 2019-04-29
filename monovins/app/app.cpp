@@ -10,16 +10,16 @@ Status MonoVins::SetData(ServerContext *context, const SetDataRequest *request,
     LOG(INFO) << "new camera frame received: " << fname
               << " at time: " << request->camera().timestamp().seconds() << "."
               << request->camera().timestamp().nanos();
-    auto t = monovins::data_manager::timestamp(request->camera().timestamp().seconds(),
+    auto t = monovins::dataframe::timestamp(request->camera().timestamp().seconds(),
                                                request->camera().timestamp().nanos());
-    auto imgdata = monovins::data_manager::SensorData(fname, t);
+    auto imgdata = monovins::dataframe::SensorData(fname, t);
     dataman_.add_camera(imgdata);
     return Status::OK;
   } else if (request->has_imu()) {
     LOG(INFO) << "new imu frame recieved. ";
-    auto t = monovins::data_manager::timestamp(request->imu().timestamp().seconds(),
+    auto t = monovins::dataframe::timestamp(request->imu().timestamp().seconds(),
                                                request->camera().timestamp().nanos());
-    auto imudata = monovins::data_manager::SensorData(t);
+    auto imudata = monovins::dataframe::SensorData(t);
     auto gx = request->imu().gyroscope().x();
     auto gy = request->imu().gyroscope().y();
     auto gz = request->imu().gyroscope().z();
@@ -43,7 +43,7 @@ Status MonoVins::ProcessAll(ServerContext *context, const ProcessAllRequest *req
   auto vec = dataman_.return_in_order();
   LOG(INFO) << vec.size() << " elements.";
   for (size_t i = 0; i < vec.size(); ++i) {
-    if (vec[i].getType() == monovins::data_manager::SensorType::CAMERA) {
+    if (vec[i].getType() == monovins::dataframe::SensorType::CAMERA) {
       auto fname = vec[i].getFileName();
       LOG(INFO) << "  " << fname;
       monovo_.process(fname);
