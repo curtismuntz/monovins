@@ -17,14 +17,11 @@ load("@murtis_bazel_tools//tools:deps.bzl", "google_cpp_dependencies", "linter_d
 
 linter_dependencies()
 
-google_cpp_dependencies()
-
-github_repo(
+http_archive(
     name = "murtis_bazel_compilers",
-    repo = "bazel_compilers",
-    sha256 = "6d0f5efaa3ac073906ef3351da4038bfd081296d6307e0e87c33ffc2cc876a4f",
-    tag = "eaafbe4ee813b2d1363e8022eee2218ac3e2da06",
-    user = "curtismuntz",
+    sha256 = "16865fc175a3f64f5179c484d47b80170e7635093348ce51743c1eb261413246",
+    strip_prefix = "bazel_compilers-0.4.0",
+    urls = ["https://github.com/curtismuntz/bazel_compilers/archive/v0.4.0.tar.gz"],
 )
 
 load("@murtis_bazel_compilers//compilers:dependencies.bzl", "cross_compiler_dependencies")
