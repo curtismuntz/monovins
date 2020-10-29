@@ -159,9 +159,9 @@ http_archive(
 
 http_archive(
     name = "bazel_skylib",
-    sha256 = "eb5c57e4c12e68c0c20bc774bfbc60a568e800d025557bc4ea022c6479acc867",
-    strip_prefix = "bazel-skylib-0.6.0",
-    url = "https://github.com/bazelbuild/bazel-skylib/archive/0.6.0.tar.gz",
+    sha256 = "7ac0fa88c0c4ad6f5b9ffb5e09ef81e235492c873659e6bb99efb89d11246bcb",
+    strip_prefix = "bazel-skylib-1.0.3",
+    url = "https://github.com/bazelbuild/bazel-skylib/archive/1.0.3.tar.gz",
 )
 
 load("@io_bazel_rules_rust//rust:repositories.bzl", "rust_repositories")
