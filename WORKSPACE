@@ -149,11 +149,11 @@ http_archive(
 http_archive(
     name = "libc",
     build_file = "@//:libc.BUILD",
-    sha256 = "1ac4c2ac6ed5a8fb9020c166bc63316205f1dc78d4b964ad31f4f21eb73f0c6d",
-    strip_prefix = "libc-0.2.20",
+    sha256 = "193d9fec28d5519fa81b9f9af715bc89743d900a10e051e29cd9fb5c863a2451",
+    strip_prefix = "libc-0.2.97",
     urls = [
-        "https://mirror.bazel.build/github.com/rust-lang/libc/archive/0.2.20.zip",
-        "https://github.com/rust-lang/libc/archive/0.2.20.zip",
+        "https://mirror.bazel.build/github.com/rust-lang/libc/archive/0.2.97.zip",
+        "https://github.com/rust-lang/libc/archive/0.2.97.zip",
     ],
 )
 
