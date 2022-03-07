@@ -19,9 +19,9 @@ linter_dependencies()
 
 http_archive(
     name = "murtis_bazel_compilers",
-    sha256 = "16865fc175a3f64f5179c484d47b80170e7635093348ce51743c1eb261413246",
-    strip_prefix = "bazel_compilers-0.4.0",
-    urls = ["https://github.com/curtismuntz/bazel_compilers/archive/v0.4.0.tar.gz"],
+    sha256 = "01136ae804982b06e9626ca4affc5399286faf9930b7d6701faa17ce9f085167",
+    strip_prefix = "bazel_compilers-0.7.0",
+    urls = ["https://github.com/curtismuntz/bazel_compilers/archive/v0.7.0.tar.gz"],
 )
 
 load("@murtis_bazel_compilers//compilers:dependencies.bzl", "cross_compiler_dependencies")
