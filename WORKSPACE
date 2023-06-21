@@ -7,9 +7,9 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 ###############################
 http_archive(
     name = "murtis_bazel_tools",
-    sha256 = "099798213986aa96d7dc1bdc6f7b0841eeefe5408f6ede85f5530638a9aff1bf",
-    strip_prefix = "bazel_tools-47f50405eb76f8320dc16c11509595254af98a4d",
-    urls = ["https://github.com/curtismuntz/bazel_tools/archive/47f50405eb76f8320dc16c11509595254af98a4d.tar.gz"],
+    sha256 = "797f27363eedd9ebe24f3e1de03c7d1227615a1c48e15d33c8d848a614090221",
+    strip_prefix = "bazel_tools-b63f4abc7952947af1cd81292e27bf9d91e53765",
+    urls = ["https://github.com/curtismuntz/bazel_tools/archive/b63f4abc7952947af1cd81292e27bf9d91e53765.tar.gz"],
 )
 
 load("@murtis_bazel_tools//tools:github_repo.bzl", "github_repo")
