@@ -119,9 +119,9 @@ http_archive(
 
 http_archive(
     name = "com_github_bazelbuild_buildtools",
-    sha256 = "e8792ae37bfa82eb4efa3e2d93a5b4dcc43d681d13f6d00f183d2ef34a4bc828",
-    strip_prefix = "buildtools-4bcdbd1064fcc48180fa30400e39f7a940fdb8f9",
-    url = "https://github.com/bazelbuild/buildtools/archive/4bcdbd1064fcc48180fa30400e39f7a940fdb8f9.zip",
+    sha256 = "e4128c6c6dbcf6268a2c5da8f438f86b7bbe0abeddabef5f0a6d4a5196d2de0c",
+    strip_prefix = "buildtools-03bf520394afefdf48c558187b2d76b8b4b60ef1",
+    url = "https://github.com/bazelbuild/buildtools/archive/03bf520394afefdf48c558187b2d76b8b4b60ef1.zip",
 )
 
 load("@io_bazel_rules_go//go:def.bzl", "go_register_toolchains", "go_rules_dependencies")
