@@ -88,9 +88,9 @@ http_archive(
 ###############################
 http_archive(
     name = "build_stack_rules_proto",
-    sha256 = "9c9fc051189dd87bd643cf69e82e3b08de03114fc03155de784ba60bd0cef4b6",
-    strip_prefix = "rules_proto-609362dd9b08110b7a95bfa26b5e3aac3cd06905",
-    urls = ["https://github.com/stackb/rules_proto/archive/609362dd9b08110b7a95bfa26b5e3aac3cd06905.tar.gz"],
+    sha256 = "002fa80f1614181b532cbb0ef83d5b859b0b928f2b2a2a733f2d6246dae6fd2f",
+    strip_prefix = "rules_proto-3b147a8ef41e49ae6524a938c4c187e8acf004e2",
+    urls = ["https://github.com/stackb/rules_proto/archive/3b147a8ef41e49ae6524a938c4c187e8acf004e2.tar.gz"],
 )
 
 load("@build_stack_rules_proto//cpp:deps.bzl", "cpp_grpc_library")
